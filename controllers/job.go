@@ -45,6 +45,7 @@ func GetJobs(c echo.Context) error {
 
 func GetJob(c echo.Context) error {
 	jobID := c.Param("job_id")
+	fmt.Println("jobID", jobID)
 	job, err := repositories.GetJobByID(context.TODO(), jobID)
 	if err != nil {
 		return c.JSON(http.StatusNotFound, "Job not found")

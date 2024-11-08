@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+	"os"
 )
 
 type ResumeResponse struct {
@@ -35,8 +36,9 @@ func ParseResume(filePath string) (ResumeResponse, error) {
 	if err != nil {
 		return response, err
 	}
+	apiKey := os.Getenv("API_KEY")
 	req.Header.Set("Content-Type", "application/octet-stream")
-	req.Header.Set("apikey", "0bWeisRWoLj3UdXt3MXMSMWptYFIpQfS")
+	req.Header.Set("apikey", apiKey)
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
